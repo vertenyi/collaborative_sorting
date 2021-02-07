@@ -1,4 +1,4 @@
-// Collaborative sorting js
+// Collaborative sorting by eriol
 
 const byId = (id) => document.getElementById(id);
 
