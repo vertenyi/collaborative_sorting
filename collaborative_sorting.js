@@ -1,6 +1,18 @@
 // Collaborative sorting by eriol
 
+inputData = [ "alma"
+            , "körte"
+            , "szilva"
+            , "cseresznye"
+            , "banán"
+            , "eper" 
+            , "narancs"
+];
+
+
 const byId = (id) => document.getElementById(id);
+let appRunning = 0;
+
 
 //const display = byId("display");
 //const output = (text) => display.innerHTML = text;
@@ -21,39 +33,44 @@ const tagCreator = (e) => {
 
 let setresult = (t) => byId("result").innerHTML = t;
 
-
-let selection = () =>{
-    tagCreator({ id: "c1"
+let createComparison = (id, value) =>{
+        tagCreator({ id: "id"
                 , target: compare
-                , innerHTML: "text"
+                , innerHTML: value
+                , class: "comparisonBox"
                 , style: [["display","inline-block"],["cursor","pointer"]] 
-                , attr: [["onclick","alert(1)"]] 
+                , attr: [["onclick",value]] 
             });
 
-    tagCreator({ id: "c2"
-                , target: compare
-                , innerHTML: "text2"
-                , style: [["display","inline-block"],["cursor","pointer"]]
-                , attr: [["onclick","alert(2)"]] 
-            });
-
+}
+let selection = () =>{
+    byId("compare").innerHTML = "";
+    createComparison("c1","t1");
+    createComparison("c2","t2");
 }
 
 let sort = () => {
 
     selection();
 
-
     setresult("123");
 
 };
 
-let init = () => {
+
+let start = () => {
+    if (appRunning == 0){
 
     let display = byId("display");
-    tagCreator({ id: "compare", target: display });
+        display.innerHTML = "";
+    
+    tagCreator({ id: "inputData", class: "div", target: display, innerHTML: inputData.toString() });
 
-    tagCreator({ id: "result", target: display });
+    tagCreator({ id: "compare", class: "div", target: display });
 
+    tagCreator({ id: "result", target: "div", target: display });
+    appRunning = 1;
+    }
     sort();
+
 };
